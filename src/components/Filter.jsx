@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import iconLocation from '/assets/desktop/icon-location.svg'
 export default function Filter () {
+
     return(
         <>
         <div className={classNames("flex flex-col bg-pattern-detail-footer h-auto p-6  w-4/5 rounded-md")}>
