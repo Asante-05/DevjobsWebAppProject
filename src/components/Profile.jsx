@@ -10,7 +10,7 @@ const Profile = ({ logo, company, postedAt, position, contract, location }) => {
           <div className="flex space-x-4 text-grey text-[16] font-medium">
             <h1>{postedAt}</h1><h1>.</h1><h1>{contract}</h1>
           </div>
-          <div className="font-extrabold mt-3 text-[20px] text-white">
+          <div className="font-extrabold mt-3 text-[20px] text-black">
             <h1>{position}</h1>
           </div>
           <div className="text-grey font-normal text-[16px] mt-3">

@@ -6,9 +6,9 @@ import { StateProvider } from "./Context/StateContext.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <StateProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StateProvider>
       <App />
-    </BrowserRouter>
-  </StateProvider>
+    </StateProvider>
+  </BrowserRouter>
 );
