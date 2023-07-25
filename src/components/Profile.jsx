@@ -1,4 +1,4 @@
-const Profile = ({ logo, company, postedAt, position, contract, location }) => {
+const Profile = ({ id, logo, company, postedAt, position, contract, location }) => {
   return (
     <>
       <div className="p-10 rounded-lg  relative">

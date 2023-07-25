@@ -3,7 +3,6 @@ import Filter from "./Filter";
 import { stateContext } from "../Context/StateContext";
 import classNames from "classnames";
 
-import Data from "../data.json";
 
 import iconFilter from "/assets/mobile/icon-filter.svg";
 import iconSearch from "/assets/desktop/icon-search.svg";
@@ -13,7 +12,28 @@ import Profile from "./Profile";
 
 export default function List() {
   const [filter, setFilter] = useState(false);
+  const [message, setMessage] = useState();
+  const [updated, setUpdated] = useState('');
   const { isSelected, setIsSelected } = useContext(stateContext);
+
+
+
+  
+  const storedData = JSON.parse(localStorage.getItem('jsonData'));
+  
+
+
+  const handleChange = (event) => {
+    setMessage(event.target.value)
+  }
+
+  const handleClick = () => {
+    setUpdated(message)
+  }
+
+  
+
+
 
   return (
     <>
@@ -24,8 +44,7 @@ export default function List() {
             "mx-auto w-11/12 p-3   relative left-0 right-0 z-10 bg-white rounded-lg ",
             {
               "bg-veryDarkBlue transition-all duration-500": isSelected,
-            }
-          )}
+            })}
         >
           <div
             className={classNames("flex justify-between items-center pl-3", {
@@ -34,6 +53,11 @@ export default function List() {
           >
             <input
               type="text"
+              id="message"
+              name="message"
+              onChange={handleChange}
+              value={message}
+
               className={classNames("focus:outline-0 w-48 h-10", {
                 "bg-veryDarkBlue transition-all duration-500 focus:outline-0":
                   isSelected,
@@ -49,6 +73,8 @@ export default function List() {
                 })}
               />
               <img
+              onClick={handleClick}
+            
                 src={iconSearch}
                 className="p-3 bg-violet rounded-lg cursor-pointer "
               />
@@ -62,7 +88,37 @@ export default function List() {
       </div>
 
       <div className=" mx-auto space-y-16 w-11/12   relative left-0   rounded-lg ">
-        {Data.map((data, key) => {
+
+
+        {storedData.filter(job => job.position.includes(updated)).map((fileteredJob, index) =>{
+          return (
+            <Link to="/detail/:id">
+              <div
+                key={index}
+
+                
+
+                className={classNames("mt-10 bg-white rounded-md", {
+                  "bg-veryDarkBlue transition-all duration-700": isSelected,
+                })}
+              >
+                {
+                  <Profile
+                    id = {fileteredJob.id}
+                    logo={fileteredJob.logo}
+                    postedAt={fileteredJob.postedAt}
+                    position={fileteredJob.position}
+                    contract={fileteredJob.contract}
+                    location={fileteredJob.location}
+                    company={fileteredJob.company}
+                  />
+                }
+              </div>
+            </Link>
+          );
+        })}
+
+        {/* {Data.map((data, key) => {
           return (
             <Link to="/detail">
               <div
@@ -84,7 +140,10 @@ export default function List() {
               </div>
             </Link>
           );
-        })}
+        })} */}
+
+
+
 
         <div className="max-w-sm mx-auto ">
           <div className=" m flex justify-center mt-20 ">
@@ -96,4 +155,5 @@ export default function List() {
       </div>
     </>
   );
+
 }

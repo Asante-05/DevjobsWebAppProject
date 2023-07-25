@@ -4,6 +4,7 @@ import sunSvg from "/assets/desktop/icon-sun.svg";
 import logo from "/assets/desktop/logo.svg";
 
 
+
 import {
   BrowserRouter as Router,
   Route,
@@ -15,10 +16,16 @@ import { useContext, useState } from "react";
 import classNames from "classnames";
 import { stateContext } from "./Context/StateContext";
 import List from "./components/List";
+import { getElementbyID,  printd,  storeData } from "./myAPI/API";
 
 const App = () => {
-  const [filter, setFilter] = useState(false);
+  // const [filter, setFilter] = useState(false);
   const { isSelected, setIsSelected } = useContext(stateContext);
+
+
+  // storeData()
+  
+ 
 
   return (
     <>
@@ -64,7 +71,7 @@ const App = () => {
             <>
               <Routes>
                 <Route path="/" element={<List />} />
-                <Route path="/detail" element={<Detail />} />
+                <Route path="/detail/:id" element={<Detail />} />
               </Routes>
             </>
           </div>
