@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import { stateContext } from "../Context/StateContext";
 import classNames from "classnames";
@@ -16,12 +17,11 @@ export default function List() {
   const [updated, setUpdated] = useState('');
   const { isSelected, setIsSelected } = useContext(stateContext);
 
-
-
+  const navigate = useNavigate()
   
   const storedData = JSON.parse(localStorage.getItem('jsonData'));
   
-
+  
 
   const handleChange = (event) => {
     setMessage(event.target.value)
@@ -31,10 +31,11 @@ export default function List() {
     setUpdated(message)
   }
 
+  const goto = (item) => {
+    navigate(`detail/${item.id}`)
+  }
+
   
-
-
-
   return (
     <>
       <div>
@@ -79,7 +80,7 @@ export default function List() {
                 className="p-3 bg-violet rounded-lg cursor-pointer "
               />
             </div>
-            <div className="absolute w-11/12 bg-white rounded-md">
+            <div className="absolute  w-11/12 bg-white rounded-md">
               {filter ? <Filter /> : ""}
             </div>
           </div>
@@ -92,10 +93,11 @@ export default function List() {
 
         {storedData.filter(job => job.position.includes(updated)).map((fileteredJob, index) =>{
           return (
-            <Link to="/detail/:id">
+          
               <div
                 key={index}
 
+                onClick={() => goto(fileteredJob)}
                 
 
                 className={classNames("mt-10 bg-white rounded-md", {
@@ -114,7 +116,7 @@ export default function List() {
                   />
                 }
               </div>
-            </Link>
+            
           );
         })}
 

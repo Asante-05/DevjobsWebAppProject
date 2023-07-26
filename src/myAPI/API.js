@@ -1,6 +1,6 @@
 import data from '../data.json'
 
-const storedData = JSON.parse(localStorage.getItem('jsonData'));
+const myLocalStorage = JSON.parse(localStorage.getItem('jsonData'));
 
 export function storeData() {
 
@@ -21,8 +21,15 @@ export function printStored() {
 
     }
 }
-export function printd() {
-    console.log(storedData)
+
+export function getItemByID (id) {
+    return myLocalStorage[id]
 }
-export function getElementbyID (id) {    return (JSON.parse(localStorage.getItem(id)))
-}
+
+
+export function extractIdFromLocation (location) {
+    const { pathname } = location;
+    const pathParts = pathname.split('/');
+    const id = pathParts[pathParts.length - 1];
+    return id;
+  };

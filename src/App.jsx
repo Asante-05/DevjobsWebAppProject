@@ -9,21 +9,27 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation,
 } from "react-router-dom";
 import Detail from "./components/Detail";
-import Data from "./data.json";
 import { useContext, useState } from "react";
 import classNames from "classnames";
 import { stateContext } from "./Context/StateContext";
 import List from "./components/List";
-import { getElementbyID,  printd,  storeData } from "./myAPI/API";
+import { extractIdFromLocation,  storeData } from "./myAPI/API";
 
 const App = () => {
+
+  const storedData = JSON.parse(localStorage.getItem('jsonData'));
+
   // const [filter, setFilter] = useState(false);
   const { isSelected, setIsSelected } = useContext(stateContext);
 
+  const location = useLocation();
+  const id = extractIdFromLocation(location);
 
-  // storeData()
+
+  storeData()
   
  
 
@@ -71,7 +77,7 @@ const App = () => {
             <>
               <Routes>
                 <Route path="/" element={<List />} />
-                <Route path="/detail/:id" element={<Detail />} />
+                <Route path='/detail/:id' element={<Detail id = {id}/>} />
               </Routes>
             </>
           </div>
