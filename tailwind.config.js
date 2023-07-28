@@ -9,6 +9,13 @@ module.exports = {
       'kumbhSans': ['Kumbh Sans'],
     },
 
+    screens: {
+      'phone': '640px',
+      'tablet': '768px',
+      'laptop': '1024px',
+
+    },
+
     colors: {
       white: '#FFFFFF',
       lightGrey: '#F4F6F8',
@@ -21,6 +28,8 @@ module.exports = {
     },
     backgroundImages :{
       'mobileBanner': "url('/assets/mobile/bg-pattern-header.svg')",
+      'tabletBanner': "url('/assets/tablet/bg-pattern-header.svg')",
+      'desktopBanner': "url('/assets/desktop/bg-pattern-header.svg')",
     },
     extend: {},
   },
