@@ -42,7 +42,7 @@ const MediumComponentDetail = ({ id }) => {
   return (
     <>
       <div>
-        <div className="flex justify-center -top-4 items-center   relative">
+        <div className="flex justify-center -top-8 items-center   relative">
           <div className="bg-white w-[70%] rounded-lg flex items-center ">
 
             <div className="w-[140px] h-[140px]">
@@ -165,10 +165,17 @@ const MediumComponentDetail = ({ id }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-9 bg-white p-5 ">
-        <button className="w-72 h-12 text-white text-base font-extrabold bg-violet rounded-md ">
+      <div className="flex justify-between mt-9 bg-white p-5 ">
+        <div className="ml-[14%]">
+          <h1 className="text-lg font-extrabold">{item.position}</h1>
+          <h1>{item.contract}</h1>
+        </div>
+        <div className="mr-[14%]">
+
+        <button className="w-48 h-12 text-white text-base font-extrabold bg-violet rounded-md  ">
           Apply Now
         </button>
+        </div>
       </div>
     </>
   );
