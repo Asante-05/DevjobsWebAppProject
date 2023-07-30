@@ -12,7 +12,6 @@ import debounce from "lodash.debounce"; // Optional if you want to use debounce
 export function SearchBar() {
   const [screenSize, setScreenSize] = useState("small");
 
-  // Optional: Use debounce for window resize event (to avoid excessive re-renders)
   const handleResize = debounce(() => {
     const width = window.innerWidth;
     if (width < 768) {
@@ -23,22 +22,18 @@ export function SearchBar() {
   }, 300);
 
   useEffect(() => {
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, [handleResize]);
-
   return (
     <>
       <div>
         {screenSize === "small" && <SmallComponent />}
         {screenSize === "medium" && <MediumComponent />}
-        
       </div>
     </>
   );
+
 }
 
 const SmallComponent = () => {
@@ -56,9 +51,9 @@ const SmallComponent = () => {
     <>
       <div
         className={classNames(
-          "mx-auto w-11/12 p-3 -top-8  relative left-0 right-0 z-10 bg-white rounded-lg   ",
+          "mx-auto w-11/12 p-3 -top-8  relative left-0 right-0 z-10 bg-veryDarkBlue rounded-lg   ",
           {
-            "bg-red transition-all duration-500": isSelected,
+            "bg-white transition-all duration-500": !isSelected,
           }
         )}
       >
@@ -93,7 +88,7 @@ const SmallComponent = () => {
               className="p-3 bg-violet rounded-lg cursor-pointer "
             />
           </div>
-          <div className="absolute -bottom-64 w-11/12 bg-white rounded-md">
+          <div className="absolute -bottom-64 w-11/12  bg-white rounded-md">
             {/* {filter && <DimmingOverlay show={true} /> } */}
 
             {filter && (
@@ -123,9 +118,10 @@ const MediumComponent = () => {
     <>
       <div
         className={classNames(
-          "mx-auto w-11/12 p-3 -top-8  relative left-0 right-0  rounded-lg bg-white ",
+          "bg-veryDarkBlue transition-all duration-500 mx-auto w-11/12 p-3 -top-8  relative left-0 right-0  rounded-lg"
+          ,
           {
-            "bg-red transition-all duration-500": isSelected,
+            " bg-white" : !isSelected,
           }
         )}
       >
@@ -136,13 +132,13 @@ const MediumComponent = () => {
         >
           <div className={classNames("w-1/3 flex gap-2")}>
             <img src={iconSearch} alt="x" className=""></img>
-            <input type="text" placeholder="Filter by title" className="w-[85%]"></input>
+            <input type="text" placeholder="Filter by title" className={classNames("w-[85%] focus:outline-0", {'bg-veryDarkBlue text-white' : isSelected})}></input>
           </div>
           <div className="h-16 w-[1px] bg-grey"></div>
           <div className={classNames("w-1/3 flex gap-3  ml-2")}>
             <img src={iconLocation} alt="x" className=""></img>
 
-            <input type="text" placeholder="Filter by location" className="w-[85%]"></input>
+            <input type="text" placeholder="Filter by location" className={classNames("w-[85%] focus:outline-0", {'bg-veryDarkBlue text-white' : isSelected})}></input>
           </div>
           <div className="h-16 w-[1px] bg-grey"></div>
 
@@ -150,12 +146,12 @@ const MediumComponent = () => {
             <div>
               <input
                 type="checkbox"
-                className="max-w-[60px] max-h-[60px] bg-grey"
+                className="max-w-[60px] max-h-[60px] bg-grey text-[25px]"
               ></input>
-              <label className="text-[15px] font-semibold">Full Time</label>
+              <label className={classNames("text-[15px] font-semibold", {"text-white" : isSelected})}>Full Time Only</label>
             </div>
-            <div className="max-w-[80px] max-h-[48px] ">
-              <button className="font-extrabold">Search</button>
+            <div className="min-w-[120px] min-h-[48px] bg-lightViolet rounded-lg flex justify-center items-center">
+              <button className="font-extrabold bg-none w-100px text-white ">Search</button>
             </div>
           </div>
 
@@ -164,6 +160,6 @@ const MediumComponent = () => {
     </>
   );
 };
-const LargeComponent = () => <p>This is a large component.</p>;
+
 
 export default SearchBar;

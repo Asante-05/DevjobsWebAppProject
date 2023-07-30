@@ -35,6 +35,8 @@ export function Detail({ id }) {
   );
 }
 
+
+
 const MediumComponentDetail = ({ id }) => {
   const { isSelected, setIsSelected } = useContext(stateContext);
 
@@ -43,41 +45,34 @@ const MediumComponentDetail = ({ id }) => {
     <>
       <div>
         <div className="flex justify-center -top-8 items-center   relative">
-          <div className="bg-white w-[70%] rounded-lg flex items-center ">
-
+          <div className={classNames("bg-veryDarkBlue w-[70%] rounded-lg flex items-center ", { "bg-white " : !isSelected})}>
             <div className="w-[140px] h-[140px]">
               <img src={item.logo}></img>
             </div>
 
             <div className=" w-11/12 rounded-lg flex justify-between ">
               <div className="gap-5">
-                <div className="text-xl font-bold">{item.company}</div>
-                <div className="text-base">{item.website}</div>
+                <div className={classNames("text-xl font-bold", {"text-white" : isSelected})}>{item.company}</div>
+                <div className="text-base text-grey">{item.website}</div>
               </div>
 
               <div className="mr-8">
-                <button className="h-[48px] w-[147px] rounded text-base font-bold text-violet bg-lightGrey ">
+                <button className={classNames("h-[48px] w-[147px] rounded text-base font-bold text-violet bg-lightGrey ", {" text-white bg-opacity-10 bg-lightGrey " : isSelected})}>
                   Company Site
                 </button>
               </div>
-
-
             </div>
           </div>
         </div>
 
-
-
-        
-
         <div className="flex justify-center items-center relative mt-10">
           <div
             className={classNames(
-              " mt-1 w-[70%]  p-10 bg-white rounded-bl-md flex flex-col justify-center gap-5 items-center ",
-              { "bg-veryDarkBlue": isSelected }
+              " mt-1 w-[70%]  p-10 bg-veryDarkBlue rounded-bl-md flex flex-col justify-center gap-5 items-center ",
+              { "bg-white": !isSelected }
             )}
           >
-           <div className="flex">
+            <div className="flex">
               <div className="space-y-2">
                 <div className="flex space-x-4 text-grey text-[16] font-medium">
                   <h1>{item.postedAt}</h1>
@@ -97,16 +92,12 @@ const MediumComponentDetail = ({ id }) => {
                 </div>
               </div>
 
-
               <div>
                 <button className="h-12 text-white text-base font-extrabold mt-10 bg-violet rounded-md ">
                   Apply Now
                 </button>
               </div>
             </div>
-         
-         
-            
 
             <div className="mt-5">
               <div
@@ -118,7 +109,7 @@ const MediumComponentDetail = ({ id }) => {
               </div>
 
               <div className="justify space-y-10">
-                <div className="mt-10 font-bold text-xl">Requirements</div>
+                <div className={classNames("mt-10 font-bold text-xl", {"text-white" : isSelected})}>Requirements</div>
                 <div
                   className={classNames("text-black font-normal text-base", {
                     "text-grey": isSelected,
@@ -140,7 +131,7 @@ const MediumComponentDetail = ({ id }) => {
               </div>
 
               <div className="justify space-y-10">
-                <div className="mt-10 font-bold text-xl">What You Will Do</div>
+                <div  className={classNames("mt-10 font-bold text-xl", {"text-white" : isSelected})}>What You Will Do</div>
                 <div
                   className={classNames("text-black font-normal text-base", {
                     "text-grey": isSelected,
@@ -165,21 +156,24 @@ const MediumComponentDetail = ({ id }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-9 bg-white p-5 ">
+      <div className={classNames("flex justify-between mt-9 bg-veryDarkBlue p-5 ", {"bg-white": !isSelected})}>
         <div className="ml-[14%]">
-          <h1 className="text-lg font-extrabold">{item.position}</h1>
-          <h1>{item.contract}</h1>
+          <h1 className={classNames("text-lg font-extrabold", {"text-white": isSelected})}>{item.position}</h1>
+          <h1 className={classNames("text-grey")}>{item.contract}</h1>
         </div>
         <div className="mr-[14%]">
-
-        <button className="w-48 h-12 text-white text-base font-extrabold bg-violet rounded-md  ">
-          Apply Now
-        </button>
+          <button className="w-48 h-12 text-white text-base font-extrabold bg-violet rounded-md  ">
+            Apply Now
+          </button>
         </div>
       </div>
     </>
   );
 };
+
+
+
+
 
 const SmallComponentDetail = ({ id }) => {
   const { isSelected, setIsSelected } = useContext(stateContext);
@@ -195,14 +189,14 @@ const SmallComponentDetail = ({ id }) => {
 
           <div
             className={classNames(
-              "  -mt-4 w-11/12  p-10 bg-white rounded-md flex flex-col justify-center gap-5 items-center ",
-              { "bg-veryDarkBlue": isSelected }
+              "-mt-4 w-11/12  p-10 bg-veryDarkBlue rounded-md flex flex-col justify-center gap-5 items-center ",
+              { "bg-white": !isSelected }
             )}
           >
-            <div className="text-xl font-bold">{item.company}</div>
-            <div className="text-base">{item.website}</div>
+            <div className={classNames("text-xl font-bold", {"text-white": isSelected})}>{item.company}</div>
+            <div className="text-base text-grey">{item.website}</div>
             <div>
-              <button className="h-[48px] w-[147px] rounded text-base font-bold text-violet bg-lightGrey ">
+              <button className="h-[48px] w-[147px] rounded text-base font-bold text-violet bg-lightGrey bg-opacity-30">
                 Company Site
               </button>
             </div>
@@ -212,8 +206,8 @@ const SmallComponentDetail = ({ id }) => {
         <div className="flex justify-center items-center relative mt-10">
           <div
             className={classNames(
-              " mt-1 w-11/12  p-10 bg-white rounded-bl-md flex flex-col justify-center gap-5 items-center ",
-              { "bg-veryDarkBlue": isSelected }
+              " mt-1 w-11/12  p-10 bg-veryDarkBlue rounded-bl-md flex flex-col justify-center gap-5 items-center ",
+              { "bg-white": !isSelected }
             )}
           >
             <div className=" w-11/12 ">
@@ -236,7 +230,7 @@ const SmallComponentDetail = ({ id }) => {
                 </div>
               </div>
 
-              <button className="w-11/12 h-12 text-white text-base font-extrabold mt-10 bg-violet rounded-md ">
+              <button className="w-11/12 h-12 text-white text-base font-extrabold mt-10 bg-blue rounded-md ">
                 Apply Now
               </button>
             </div>
@@ -251,7 +245,7 @@ const SmallComponentDetail = ({ id }) => {
               </div>
 
               <div className="justify space-y-10">
-                <div className="mt-10 font-bold text-xl">Requirements</div>
+                <div className={classNames("mt-10 font-bold text-xl", {"text-white": isSelected})}>Requirements</div>
                 <div
                   className={classNames("text-black font-normal text-base", {
                     "text-grey": isSelected,
@@ -273,7 +267,7 @@ const SmallComponentDetail = ({ id }) => {
               </div>
 
               <div className="justify space-y-10">
-                <div className="mt-10 font-bold text-xl">What You Will Do</div>
+                <div className={classNames("mt-10 font-bold text-xl", {"text-white": isSelected})}>What You Will Do</div>
                 <div
                   className={classNames("text-black font-normal text-base", {
                     "text-grey": isSelected,
@@ -298,7 +292,7 @@ const SmallComponentDetail = ({ id }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-9 bg-white p-5 ">
+      <div className={classNames("flex justify-center mt-9 bg-veryDarkBlue p-5", {"bg-white" : !isSelected})}>
         <button className="w-72 h-12 text-white text-base font-extrabold bg-violet rounded-md ">
           Apply Now
         </button>

@@ -9,7 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Detail from "./components/Detail";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import { stateContext } from "./Context/StateContext";
 import List from "./components/List";
@@ -24,6 +24,38 @@ const App = () => {
   const location = useLocation();
   const id = extractIdFromLocation(location);
 
+  const [imageSrc, setImageSrc] = useState("");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      let newImageSrc;
+
+      if (screenWidth >= 1440) {
+        newImageSrc = "/assets/desktop/bg-pattern-header.svg";
+      } else if (screenWidth >= 1024) {
+        newImageSrc = "/assets/desktop/bg-pattern-header.svg";
+      } else if (screenWidth >= 640) {
+        newImageSrc = "/assets/tablet/bg-pattern-header.svg";
+      } else {
+        newImageSrc = "/assets/mobile/bg-pattern-header.svg";
+      }
+
+      setImageSrc(newImageSrc);
+    };
+
+    // Initial image selection based on the current screen size
+    handleResize();
+
+    // Add event listener to update the image source when the screen is resized
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   // storeData()
 
   return (
@@ -34,20 +66,10 @@ const App = () => {
         })}
       >
         <header className="relative ">
-          {/* <img src={mobileHeaderBanner} className="w-full" alt="banner" /> */}
           <img
-            className="w-full h-48  phone:h-[160px] tablet:h-[160px] laptop:h-[160px] "
-            srcSet="/assets/mobile/bg-pattern-header.svg 480w,
-                    /assets/tablet/bg-pattern-header.svg 768w,
-                    /assets/desktop/bg-pattern-header.svg 1024w"
-
-            sizes="(max-width: 600px) mobile,
-                    (max-width: 960px) tablet,
-                    laptop"
-            src="/assets/mobile/bg-pattern-header.svg"
-            alt="Responsive Image"
+            className="w-full h-48  "
+            src={imageSrc}
           />
-          
 
           <div className="absolute z-10 top-0 w-full">
             <div className="flex justify-between p-10">
