@@ -47,7 +47,8 @@ const MediumComponentDetail = ({ id }) => {
         <div className="flex justify-center -top-8 items-center   relative">
           <div className={classNames("bg-veryDarkBlue w-[70%] rounded-lg flex items-center ", { "bg-white " : !isSelected})}>
             <div className="w-[140px] h-[140px]">
-              <img src={item.logo}></img>
+              {/* <img src={item.logo}></img> */}
+              <img src={" /assets/logos/scoot.svg"}></img>
             </div>
 
             <div className=" w-11/12 rounded-lg flex justify-between ">
@@ -72,7 +73,7 @@ const MediumComponentDetail = ({ id }) => {
               { "bg-white": !isSelected }
             )}
           >
-            <div className="flex">
+            <div className="flex w-full justify-between items-center">
               <div className="space-y-2">
                 <div className="flex space-x-4 text-grey text-[16] font-medium">
                   <h1>{item.postedAt}</h1>
@@ -93,7 +94,7 @@ const MediumComponentDetail = ({ id }) => {
               </div>
 
               <div>
-                <button className="h-12 text-white text-base font-extrabold mt-10 bg-violet rounded-md ">
+                <button className="h-12 max-w-[174px] min-w-[120px]  text-white text-base font-extrabold  bg-violet rounded-md ">
                   Apply Now
                 </button>
               </div>

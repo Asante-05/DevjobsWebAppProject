@@ -69,7 +69,7 @@ const SmallComponent = () => {
             onChange={handleChange}
             value={message}
             className={classNames("focus:outline-0 w-48 h-10", {
-              "bg-veryDarkBlue transition-all duration-500 focus:outline-0":
+              "bg-veryDarkBlue text-white transition-all duration-500 focus:outline-0":
                 isSelected,
             })}
             placeholder="Filter by title..."
