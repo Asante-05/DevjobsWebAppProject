@@ -1,36 +1,24 @@
 import Filter from "./Filter";
 import iconFilter from "/assets/mobile/icon-filter.svg";
 import iconSearch from "/assets/desktop/icon-search.svg";
+import iconSearchWhite from "/assets/desktop/icon-search-white.svg";
 import iconLocation from "/assets/desktop/icon-location.svg";
 
 import React, { useContext, useState, useEffect } from "react";
 import classNames from "classnames";
 import { stateContext } from "../Context/StateContext";
 
-import debounce from "lodash.debounce"; // Optional if you want to use debounce
 
 export function SearchBar() {
-  const [screenSize, setScreenSize] = useState("small");
-
-  const handleResize = debounce(() => {
-    const width = window.innerWidth;
-    if (width < 768) {
-      setScreenSize("small");
-    } else {
-      setScreenSize("medium");
-    } 
-  }, 300);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [handleResize]);
   return (
     <>
-      <div>
-        {screenSize === "small" && <SmallComponent />}
-        {screenSize === "medium" && <MediumComponent />}
+      <div className='tablet:hidden'>
+        <SmallComponent/>
       </div>
+      <div className='hidden tablet:flex'>
+        <MediumComponent/>
+      </div>
+
     </>
   );
 
@@ -43,7 +31,7 @@ const SmallComponent = () => {
   const { isSelected, setIsSelected, updated, setUpdated } =
     useContext(stateContext);
   const [message, setMessage] = useState();
-  
+
   const handleClick = () => {
     setUpdated(message);
   };
@@ -82,12 +70,12 @@ const SmallComponent = () => {
               src={iconFilter}
               onClick={() => setFilter(!filter)}
               className={classNames("p-2 cursor-pointer ", {
-                "stroke-current text-white": isSelected,
+                "": isSelected,
               })}
             />
             <img
               onClick={handleClick}
-              src={iconSearch}
+              src={iconSearchWhite}
               className="p-3 bg-violet rounded-lg cursor-pointer "
             />
           </div>
@@ -137,7 +125,7 @@ const MediumComponent = () => {
           })}
         >
           <div className={classNames("w-1/3 flex gap-2")}>
-            <img src={iconSearch} alt="x" className=""></img>
+            <img src={iconSearch} alt="x" id="searchIcon" className=" m-3"/>
             <input type="text" placeholder="Filter by title" className={classNames("w-[85%] focus:outline-0", {'bg-veryDarkBlue text-white' : isSelected})}></input>
           </div>
           <div className="h-16 w-[1px] bg-grey"></div>

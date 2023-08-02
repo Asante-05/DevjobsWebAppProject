@@ -39,7 +39,7 @@ export default function List() {
         {/* end of search bar */}
       </div>
 
-      <div className=" grid-container grid gap-4 mx-auto space-y-16 w-11/12   relative left-0  max-w-6xl rounded-lg phone:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3  ">
+      <div className=" grid-container grid gap-4 mx-auto w-11/12   relative left-0  max-w-6xl rounded-lg phone:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3  ">
 
 
         {storedData.filter(job => job.position.includes(updated)).map((fileteredJob, index) =>{

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useContext, useEffect, useState } from "react";
 import { getItemByID } from "../myAPI/API";
 import { stateContext } from "../Context/StateContext";
@@ -27,10 +28,13 @@ export function Detail({ id }) {
 
   return (
     <>
-      <div>
-        {screenSize === "small" && <SmallComponentDetail id={id} />}
-        {screenSize === "medium" && <MediumComponentDetail id={id} />}
-      </div>
+    <div className='tablet:hidden'>
+      <SmallComponentDetail id={id}/>
+    </div>
+    <div className='hidden tablet:flex'>
+      <MediumComponentDetail id={id} />
+    </div>
+      
     </>
   );
 }
@@ -46,12 +50,13 @@ const MediumComponentDetail = ({ id }) => {
   
   return (
     <>
+    <div>
       <div>
         <div className="flex justify-center -top-8 items-center   relative">
           <div className={classNames("bg-veryDarkBlue w-[70%] rounded-lg flex items-center ", { "bg-white " : !isSelected})}>
             <div className="w-[140px] h-[140px]">
               {/* <img src={item.logo}></img> */}
-              <img src={" /assets/logos/scoot.svg"}></img>
+              <img src={item.logo}></img>
             </div>
 
             <div className=" w-11/12 rounded-lg flex justify-between ">
@@ -127,9 +132,12 @@ const MediumComponentDetail = ({ id }) => {
                     "text-grey": isSelected,
                   })}
                 >
-                  {item.requirements.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
+                  {item.requirements.items.map(item => {
+                    const id = uuidv4()
+                    return(
+                      <li key={id}>{item}</li>
+                    )
+                  })}
                   <h1>names</h1>
                 </div>
               </div>
@@ -150,9 +158,13 @@ const MediumComponentDetail = ({ id }) => {
                     "text-grey": isSelected,
                   })}
                 >
-                  {item.role.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
+                  {item.role.items.map(item => {
+                    const id=uuidv4()
+                    return(
+                      <li key={id}>{item}</li>
+                    )
+                  })}
+                  
                   <h1>names</h1>
                 </div>
               </div>
@@ -170,6 +182,7 @@ const MediumComponentDetail = ({ id }) => {
             Apply Now
           </button>
         </div>
+      </div>
       </div>
     </>
   );
@@ -263,9 +276,12 @@ const SmallComponentDetail = ({ id }) => {
                     "text-grey": isSelected,
                   })}
                 >
-                  {item.requirements.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
+                  {item.requirements.items.map(item => {
+                    const id = uuidv4()
+                    return(
+                      <li key={id}>{item}</li>
+                    )
+                  })}
                   <h1>names</h1>
                 </div>
               </div>
@@ -286,9 +302,12 @@ const SmallComponentDetail = ({ id }) => {
                     "text-grey": isSelected,
                   })}
                 >
-                  {item.role.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
+                  {item.role.items.map(item => {
+                    const id=uuidv4()
+                    return(
+                      <li key={id}>{item}</li>
+                    )
+                  })}
                   <h1>names</h1>
                 </div>
               </div>
