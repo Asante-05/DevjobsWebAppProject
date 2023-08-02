@@ -1,15 +1,14 @@
 import data from '../data.json'
 
-const myLocalStorage = JSON.parse(localStorage.getItem('jsonData'));
+const myLocalStorage = JSON.parse(localStorage.getItem('jsonData')) || data;
+
+
 
 export function storeData() {
-
     fetch('data.json')
         .then(response => response.json())
         .then(jsonData => {
-            // Loop through the JSON data and store each object using its 'id' as the key
             localStorage.setItem('jsonData', JSON.stringify(jsonData));
-            console.log('Data stored in local storage.');
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
@@ -21,6 +20,7 @@ export function printStored() {
 
     }
 }
+
 
 export function getItemByID (id) {
     return myLocalStorage[id]

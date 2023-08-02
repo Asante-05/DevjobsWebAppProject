@@ -1,26 +1,21 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Filter from "./Filter";
 import { stateContext } from "../Context/StateContext";
 import classNames from "classnames";
-import DimmingOverlay from "./DimmingOverlay";
-
-
-import iconFilter from "/assets/mobile/icon-filter.svg";
-import iconSearch from "/assets/desktop/icon-search.svg";
+import data from "../data.json"
 
 import Profile from "./Profile";
 import { SearchBar } from "./SearchBar";
 
 export default function List() {
-  const [filter, setFilter] = useState(false);
   const [message, setMessage] = useState();
   
   const { isSelected, setIsSelected } = useContext(stateContext);
 
   const navigate = useNavigate()
   
-  const storedData = JSON.parse(localStorage.getItem('jsonData'));
+
+  const storedData = JSON.parse(localStorage.getItem('jsonData')) || data;
   
   
   const {updated, setUpdated} = useContext(stateContext)

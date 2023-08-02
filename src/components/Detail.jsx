@@ -41,6 +41,9 @@ const MediumComponentDetail = ({ id }) => {
   const { isSelected, setIsSelected } = useContext(stateContext);
 
   const item = getItemByID(id - 1);
+
+
+  
   return (
     <>
       <div>

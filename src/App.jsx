@@ -16,15 +16,14 @@ import List from "./components/List";
 import { extractIdFromLocation, storeData } from "./myAPI/API";
 
 const App = () => {
-  const storedData = JSON.parse(localStorage.getItem("jsonData"));
 
-  // const [filter, setFilter] = useState(false);
   const { isSelected, setIsSelected } = useContext(stateContext);
-
   const location = useLocation();
-  const id = extractIdFromLocation(location);
 
+  const id = extractIdFromLocation(location);
+  
   const [imageSrc, setImageSrc] = useState("");
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,19 +43,16 @@ const App = () => {
       setImageSrc(newImageSrc);
     };
 
-    // Initial image selection based on the current screen size
     handleResize();
 
-    // Add event listener to update the image source when the screen is resized
     window.addEventListener("resize", handleResize);
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // storeData()
+ 
 
   return (
     <>
@@ -67,13 +63,13 @@ const App = () => {
       >
         <header className="relative ">
           <img
-            className="w-full h-48  "
+            className="w-full h-36  "
             src={imageSrc}
           />
 
           <div className="absolute z-10 top-0 w-full">
             <div className="flex justify-between p-10">
-              <img src={logo} alt="logo" className="h-10" />
+              <img src={logo} alt="logo" className="h-10 ml-[5%]" />
 
               <div className="flex h-10  justify-center items-center">
                 <img src={sunSvg} className="text-veryDarkBlue m-2" alt="sun" />

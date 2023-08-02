@@ -36,11 +36,14 @@ export function SearchBar() {
 
 }
 
+
+
 const SmallComponent = () => {
   const [filter, setFilter] = useState(false);
   const { isSelected, setIsSelected, updated, setUpdated } =
     useContext(stateContext);
   const [message, setMessage] = useState();
+  
   const handleClick = () => {
     setUpdated(message);
   };
@@ -103,6 +106,9 @@ const SmallComponent = () => {
     </>
   );
 };
+
+
+
 const MediumComponent = () => {
   const [filter, setFilter] = useState(false);
   const { isSelected, setIsSelected, updated, setUpdated } =
@@ -118,7 +124,7 @@ const MediumComponent = () => {
     <>
       <div
         className={classNames(
-          "bg-veryDarkBlue transition-all duration-500 mx-auto w-11/12 p-3 -top-8  relative left-0 right-0  rounded-lg"
+          "bg-veryDarkBlue transition-all duration-500 mx-auto w-[85%] p-3 -top-8  relative left-0 right-0  rounded-lg"
           ,
           {
             " bg-white" : !isSelected,
@@ -142,7 +148,7 @@ const MediumComponent = () => {
           </div>
           <div className="h-16 w-[1px] bg-grey"></div>
 
-          <div className={classNames("w-1/3 flex justify-center items-center gap-7 ml-2")}>
+          <div className={classNames("w-1/3 flex justify-center items-center gap-16 ml-2")}>
             <div>
               <input
                 type="checkbox"
@@ -150,7 +156,7 @@ const MediumComponent = () => {
               ></input>
               <label className={classNames("text-[15px] font-semibold", {"text-white" : isSelected})}>Full Time Only</label>
             </div>
-            <div className="min-w-[120px] min-h-[48px] bg-lightViolet rounded-lg flex justify-center items-center">
+            <div className="min-w-[120px] min-h-[48px] bg-lightViolet rounded-lg flex justify-center  items-center">
               <button className="font-extrabold bg-none w-100px text-white ">Search</button>
             </div>
           </div>
